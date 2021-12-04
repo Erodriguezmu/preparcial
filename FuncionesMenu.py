@@ -1,5 +1,6 @@
+''' Menu princial encargado de acceder a '''
 def menu():
-    print("Bienvenido, seleccione la operacion que desea realizar")
+    print("Bienvenido, seleccione la opción a la que desea ingresar")
     print("1.) Canciones")
     print("2.) Clientes")
     print("3.) Planes")
@@ -11,11 +12,11 @@ def menu():
             opcion = int(input("Digite la opción: "))
             break
         except:
-            print("Numero no valido, escoga denuevo.")
+            print("Número no válido, escoja de nuevo.")
     return opcion
 
 def MenuOpciones():
-    print("Seleccione la operacion que desea realizar")
+    print("Seleccione la operación que desea realizar")
     print("1.) Añadir")
     print("2.) Modificar")
     print("3.) Eliminar")
@@ -27,11 +28,11 @@ def MenuOpciones():
             opcion = int(input("Digite la opción: "))
             break
         except:
-            print("Numero no valido, escoga denuevo.")
+            print("Número no válido, escoja de nuevo.")
     return opcion
 
 def MenuLista():
-    print("Seleccione la operacion que desea realizar")
+    print("Seleccione la operación que desea realizar")
     print("1.) Consultar")
     print("2.) Añadir a mi lista")
     print("3.) Eliminar de mi lista")
@@ -41,7 +42,7 @@ def MenuLista():
             opcion = int(input("Digite la opción: "))
             break
         except:
-            print("Numero no valido, escoga denuevo.")
+            print("Número no válido, escoja de nuevo.")
     return opcion
     
 
@@ -70,5 +71,5 @@ def Salir():
     else:
         pass
     return condition
-                    print("Numero no valido, escoga denuevo.")
+                    print("Número no válido, escoja de nuevo.")
             return opcion1
