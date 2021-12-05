@@ -1,9 +1,9 @@
 import sqlite3
 import FuncionesSQL as funciones
-import FuncionesGraficas as graficos
+import FuncionesMenu as FMenus
 import os
 
-database = sqlite3.connect("labasededatospooparcial.db.db")
+database = sqlite3.connect("labasededatospooparcial.db")
 
 lector = database.cursor()
 
@@ -21,10 +21,70 @@ try:
     lector.execute("CREATE TABLE PLANES (CODIGO INTEGER(9) PRIMARY KEY, NOMBRE VARCHAR(30), VALOR INTEGER(6), CANTIDAD INTEGER(6))")
 except:
     pass
+condition = True
+os.system('cls')
+while condition ==  True:
 
-try:
-    lector.execute('''CREATE TABLE MATERIASDOC (CODIGO VARCHAR(9), NOMBRE VARCHAR(30), NOMDOC VARCHAR(56), 
-    APDOC VARCHAR(24), ID VARCHAR(10), HORARIOINIT INTEGER(4), HORARIOEND INTEGER(4), DIAS VARCHAR(10), CUPOS INTEGER(3), GRUPO INTEGER(2)) ''')
-except:
-    pass
+    opcion =FMenus.Menu()
 
+    if (opcion == 1):
+
+        opcion1 = FMenus.MenuOpciones()
+
+        if (opcion1 == 1):
+                funciones.AñadirCanciones(lector,database)
+        elif (opcion1 == 2):
+                funciones.BorrarCanciones(lector,database)
+        elif (opcion1 == 3):
+                funciones.ModificarCanciones(lector,database)
+        elif (opcion1 == 4):
+                funciones.ConsultarCanciones(lector,database)
+        elif (opcion1 == 5):
+                pass
+        else:
+                print("Opcion no valida.")
+
+    if (opcion == 2):
+
+        opcion1 = FMenus.MenuOpciones()
+
+        if (opcion1 == 1):
+                funciones.AñadirClientes(lector,database)
+        elif (opcion1 == 2):
+                funciones.BorrarClientes(lector,database)
+        elif (opcion1 == 3):
+                funciones.ModificarClientes(lector,database)
+        elif (opcion1 == 4):
+                funciones.ConsultarClientes(lector,database)
+        elif (opcion1 == 5):
+                pass
+        else:
+                print("Opcion no valida.")
+
+    if (opcion == 3):
+
+        opcion1 = FMenus.MenuOpciones()
+
+        if (opcion1 == 1):
+                funciones.AñadirPlanes(lector,database)
+        elif (opcion1 == 2):
+                funciones.BorrarPlanes(lector,database)
+        elif (opcion1 == 3):
+                funciones.ModificarPlanes(lector,database)
+        elif (opcion1 == 4):
+                funciones.BuscarPlanes(lector,database)
+        elif (opcion1 == 5):
+                pass
+        else:
+                print("Opcion no valida.")
+
+    elif (opcion == 6):
+        condition =(FMenus.Salir)
+
+    else:
+        print("")
+
+    
+
+database.commit()
+database.close()
