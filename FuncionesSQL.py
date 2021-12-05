@@ -1,6 +1,6 @@
 #Importamos sqlite3 para poder trabajar con bases de Datos de manera mas efectiva.
 import sqlite3
-import FuncionesMenu as Menus
+import FuncionesMenu as FMenus
 import os
 
 def AñadirCanciones(lector,database):
@@ -21,14 +21,14 @@ def AñadirCanciones(lector,database):
     os.system('cls')
 
 def BorrarCanciones(lector,database):
-    y = input("Digite el codigo de la cancion que desea eliminar: ")
-        while True:
-            try:
-                lector.execute("DELETE FROM CANCIONES WHERE CODIGO = ?",(y,))
-                break
-            except:
-                print("Codigo no existente.")
-        database.commit()
+    y = int(input("Digite el codigo de la cancion que desea eliminar: "))
+    while True:
+        try:
+            lector.execute("DELETE FROM CANCIONES WHERE CODIGO = ?",(y,))
+            break
+        except:
+            print("Codigo no existente.")
+    database.commit()
     os.system('cls')
 
 
@@ -49,7 +49,7 @@ def ModificarCanciones(lector,database):
             print("|",end=" ")
             k = k + 1
     print("")
-    graficos.MenuCanciones()
+    FMenus.MenuCanciones()
     while True:
         try:
             a = int(input("¿Que desea modificar de la cancion?"))
@@ -91,31 +91,31 @@ def ConsultarCanciones(lector,database):
         c = input("Digite el codigo de la cancion: ")
         lector.execute("SELECT * FROM CANCIONES WHERE CODIGO = ?",(c,))
         d = lector.fetchall()
-        graficos.ImprimirTabla("CANCIONES")
+        FMenus.ImprimirTabla("CANCIONES")
 
     if (a == 2):
         c = input("Digite el nombre de la cancion: ")
         lector.execute("SELECT * FROM CANCIONES WHERE NOMBRE = ?",(c,))
         d = lector.fetchall()
-        graficos.ImprimirTabla("CANCIONES")
+        FMenus.ImprimirTabla("CANCIONES")
 
     if (a == 3):
         c = int(input("Digite el genero de la cancion: "))
         lector.execute("SELECT * FROM CANCIONES WHERE GENERO = ?",(c,))
         d = lector.fetchall()
-        graficos.ImprimirTabla("CANCIONES")
+        FMenus.ImprimirTabla("CANCIONES")
 
     if (a == 4):
         c = int(input("Digite el album de la cancion: "))
         lector.execute("SELECT * FROM CANCIONES WHERE ALBUM = ?",(c,))
         d = lector.fetchall()
-        graficos.ImprimirTabla("CANCIONES")
+        FMenus.ImprimirTabla("CANCIONES")
 
     if (a == 5):
         c = int(input("Digite el interprete de la cancion: "))
         lector.execute("SELECT * FROM CANCIONES WHERE INTERPRETE = ?",(c,))
         d = lector.fetchall()
-        graficos.ImprimirTabla("CANCIONES")
+        FMenus.ImprimirTabla("CANCIONES")
 
     b = 7
     k = 0
@@ -157,13 +157,13 @@ def AñadirClientes(lector,database):
 
 def BorrarClientes(lector,database):
     y = input("Digite la cedula del cliente que desea eliminar: ")
-        while True:
-            try:
-                lector.execute("DELETE FROM CLIENTES WHERE CEDULA = ?",(y,))
-                break
-            except:
-                print("Cedula no existente.")
-        database.commit()
+    while True:
+        try:
+            lector.execute("DELETE FROM CLIENTES WHERE CEDULA = ?",(y,))
+            break
+        except:
+            print("Cedula no existente.")
+    database.commit()
     os.system('cls')
 
 
@@ -184,7 +184,7 @@ def ModificarClientes(lector,database):
             print("|",end=" ")
             k = k + 1
     print("")
-    graficos.MenuCanciones()
+    FMenus.MenuClientes()
     while True:
         try:
             a = int(input("¿Que desea modificar del cliente?"))
@@ -196,12 +196,10 @@ def ModificarClientes(lector,database):
         lector.execute("UPDATE CLIENTES SET NOMBRE = ? WHERE CEDULA = ? ",(b,ide,))
     if (a == 2):
         b = input("Digite el nuevo apellido: ")
-        lector.execute("UPDATE CLIENTES SET APELLIDO = ? WHERE CEDULA = ? ",(b,ide,))
-        
+        lector.execute("UPDATE CLIENTES SET APELLIDO = ? WHERE CEDULA = ? ",(b,ide,))        
     if (a == 3):
         b = input("Digite el nuevo pais: ")
-        lector.execute("UPDATE CLIENTES SET PAIS = ? WHERE CEDULA = ? ",(b,ide,))
-    
+        lector.execute("UPDATE CLIENTES SET PAIS = ? WHERE CEDULA = ? ",(b,ide,))    
     if (a == 4):
         b = input("Digite el nuevo ciudad: ")
         lector.execute("UPDATE CLIENTES SET CIUDAD = ? WHERE CEDULA = ? ",(b,ide,))
@@ -243,55 +241,55 @@ def ConsultarClientes(lector,database):
         c = input("Digite la cedula del/a cliente: ")
         lector.execute("SELECT * FROM CLIENTES WHERE CEDULA = ?",(c,))
         d = lector.fetchall()
-        graficos.ImprimirTabla("CLIENTES")
+        FMenus.ImprimirTabla("CLIENTES")
 
     if (a == 2):
         c = input("Digite el nombre del/a cliente: ")
         lector.execute("SELECT * FROM CLIENTES WHERE NOMBRE = ?",(c,))
         d = lector.fetchall()
-        graficos.ImprimirTabla("CLIENTES")
+        FMenus.ImprimirTabla("CLIENTES")
 
     if (a == 3):
-        c = int(input("Digite el apellido del/a cliente: "))
+        c = input("Digite el apellido del/a cliente: ")
         lector.execute("SELECT * FROM CLIENTES WHERE APELLIDO = ?",(c,))
         d = lector.fetchall()
-        graficos.ImprimirTabla("CLIENTES")
+        FMenus.ImprimirTabla("CLIENTES")
 
     if (a == 4):
         c = int(input("Digite el pais del/a cliente: "))
         lector.execute("SELECT * FROM CLIENTES WHERE PAIS = ?",(c,))
         d = lector.fetchall()
-        graficos.ImprimirTabla("CLIENTES")
+        FMenus.ImprimirTabla("CLIENTES")
 
     if (a == 5):
         c = int(input("Digite la ciudad del/a cliente: "))
         lector.execute("SELECT * FROM CLIENTES WHERE CIUDAD = ?",(c,))
         d = lector.fetchall()
-        graficos.ImprimirTabla("CLIENTES")
+        FMenus.ImprimirTabla("CLIENTES")
 
-     if(a == 6):
-        c = input("Digite el numero celular del/a cliente: ")
+    if(a == 6):
+        c = int(input("Digite el numero celular del/a cliente: "))
         lector.execute("SELECT * FROM CLIENTES WHERE CELULAR = ?",(c,))
         d = lector.fetchall()
-        graficos.ImprimirTabla("CLIENTES")
+        FMenus.ImprimirTabla("CLIENTES")
 
-     if(a == 7):
+    if(a == 7):
         c = input("Digite la fecha del/a cliente(ddmmaa): ")
         lector.execute("SELECT * FROM CLIENTES WHERE FECHA = ?",(c,))
         d = lector.fetchall()
-        graficos.ImprimirTabla("CLIENTES")
+        FMenus.ImprimirTabla("CLIENTES")
 
-     if(a == 8):
+    if(a == 8):
         c = input("Digite el numero de tarjeta del/a cliente: ")
         lector.execute("SELECT * FROM CLIENTES WHERE TARJETA = ?",(c,))
         d = lector.fetchall()
-        graficos.ImprimirTabla("CLIENTES")
+        FMenus.ImprimirTabla("CLIENTES")
 
-     if(a == 9):
+    if(a == 9):
         c = input("Digite el estado de la cuenta del/a cliente [pagado/no pagado]: ")
         lector.execute("SELECT * FROM CLIENTES WHERE ESTADO = ?",(c,))
         d = lector.fetchall()
-        graficos.ImprimirTabla("CLIENTES")
+        FMenus.ImprimirTabla("CLIENTES")
 
     b = 7
     k = 0
@@ -326,13 +324,13 @@ def AñadirPlanes(lector,database):
 
 def BorrarPlanes(lector,database):
     y = input("Digite el codigo del plan que desea eliminar: ")
-        while True:
-            try:
-                lector.execute("DELETE FROM PLANES WHERE CODIGO = ?",(y,))
-                break
-            except:
-                print("Codigo no existente.")
-        database.commit()
+    while True:
+        try:
+            lector.execute("DELETE FROM PLANES WHERE CODIGO = ?",(y,))
+            break
+        except:
+            print("Codigo no existente.")
+    database.commit()
     os.system('cls')
 
 def ModificarPlanes(lector,database):
@@ -352,7 +350,7 @@ def ModificarPlanes(lector,database):
             print("|",end=" ")
             k = k + 1
     print("")
-    graficos.MenuCanciones()
+    FMenus.MenuPlanes()
     while True:
         try:
             a = int(input("¿Que desea modificar del plan?"))
@@ -390,25 +388,25 @@ def BuscarPlanes(lector,database):
         c = input("Digite el codigo del plan: ")
         lector.execute("SELECT * FROM ESTUDIANTES WHERE CODIGO = ?",(c,))
         d = lector.fetchall()
-        graficos.ImprimirTabla("ESTUDIANTES")
+        FMenus.ImprimirTabla("ESTUDIANTES")
 
     if (a == 2):
         c = input("Digite el nombre del plan: ")
         lector.execute("SELECT * FROM ESTUDIANTES WHERE NOMBRE = ?",(c,))
         d = lector.fetchall()
-        graficos.ImprimirTabla("ESTUDIANTES")
+        FMenus.ImprimirTabla("ESTUDIANTES")
 
     if (a == 3):
         c = int(input("Digite el valor del plan: "))
         lector.execute("SELECT * FROM ESTUDIANTES WHERE VALOR = ?",(c,))
         d = lector.fetchall()
-        graficos.ImprimirTabla("ESTUDIANTES")
+        FMenus.ImprimirTabla("ESTUDIANTES")
 
     if (a == 4):
         c = int(input("Digite el cantidad del plan: "))
         lector.execute("SELECT * FROM ESTUDIANTES WHERE CANTIDAD = ?",(c,))
         d = lector.fetchall()
-        graficos.ImprimirTabla("ESTUDIANTES")
+        FMenus.ImprimirTabla("ESTUDIANTES")
 
     b = 6
     k = 0
