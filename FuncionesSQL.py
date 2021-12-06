@@ -6,7 +6,7 @@ import os
 def AñadirCanciones(lector,database):
     while True:
         try:
-            a = int(input("Digite el codigo de la nueva cancion: "))
+            a = input("Digite el codigo de la nueva cancion: ")
             b = input("Digite el nombre de la nueva cancion: ")
             c = input("Digite el genero de la nueva cancion: ")
             d = input("Digite el album de la nueva cancion: ")
@@ -21,7 +21,7 @@ def AñadirCanciones(lector,database):
     os.system('cls')
 
 def BorrarCanciones(lector,database):
-    y = int(input("Digite el codigo de la cancion que desea eliminar: "))
+    y = input("Digite el codigo de la cancion que desea eliminar: ")
     while True:
         try:
             lector.execute("DELETE FROM CANCIONES WHERE CODIGO = ?",(y,))
@@ -52,25 +52,25 @@ def ModificarCanciones(lector,database):
     FMenus.MenuCanciones()
     while True:
         try:
-            a = int(input("¿Que desea modificar de la cancion?"))
+            a = input("¿Que desea modificar de la cancion?")
             break
         except:
             print("Opcion no valida, digite denuevo.")
-    if (a == 1):
+    if (a == '1'):
         b = input("Digite el nuevo nombre: ")
         lector.execute("UPDATE CANCIONES SET NOMBRE = ? WHERE CODIGO = ? ",(b,cod,))
-    if (a == 2):
+    if (a == '2'):
         b = input("Digite el nuevo genero: ")
         lector.execute("UPDATE CANCIONES SET GENERO = ? WHERE CODIGO = ? ",(b,cod,))
         
-    if (a == 3):
+    if (a == '3'):
         b = input("Digite el nuevo album: ")
         lector.execute("UPDATE CANCIONES SET ALBUM = ? WHERE CODIGO = ? ",(b,cod,))
     
-    if (a == 4):
+    if (a == '4'):
         b = input("Digite el nuevo interprete: ")
         lector.execute("UPDATE CANCIONES SET INTERPRETE = ? WHERE CODIGO = ? ",(b,cod,))
-    if (a == 5):
+    if (a == '5'):
         pass
     database.commit()
     os.system('cls')
@@ -100,19 +100,19 @@ def ConsultarCanciones(lector,database):
         FMenus.ImprimirTabla("CANCIONES")
 
     if (a == 3):
-        c = int(input("Digite el genero de la cancion: "))
+        c = input("Digite el genero de la cancion: ")
         lector.execute("SELECT * FROM CANCIONES WHERE GENERO = ?",(c,))
         d = lector.fetchall()
         FMenus.ImprimirTabla("CANCIONES")
 
     if (a == 4):
-        c = int(input("Digite el album de la cancion: "))
+        c = input("Digite el album de la cancion: ")
         lector.execute("SELECT * FROM CANCIONES WHERE ALBUM = ?",(c,))
         d = lector.fetchall()
         FMenus.ImprimirTabla("CANCIONES")
 
     if (a == 5):
-        c = int(input("Digite el interprete de la cancion: "))
+        c = input("Digite el interprete de la cancion: ")
         lector.execute("SELECT * FROM CANCIONES WHERE INTERPRETE = ?",(c,))
         d = lector.fetchall()
         FMenus.ImprimirTabla("CANCIONES")
@@ -137,14 +137,14 @@ def ConsultarCanciones(lector,database):
 def AñadirClientes(lector,database):
     while True:
         try:
-            a = int(input("Digite la cedula del nuevo/a cliente: "))
+            a = input("Digite la cedula del nuevo/a cliente: ")
             b = input("Digite el nombre del nuevo/a cliente: ")
             c = input("Digite el apellido del nuevo/a cliente: ")
             d = input("Digite el pais del nuevo/a cliente: ")
             e = input("Digite la ciudad del nuevo/a cliente: ")
-            f = int(input("Digite el numero celular del nuevo/a cliente: "))
+            f = input("Digite el numero celular del nuevo/a cliente: ")
             g = int(input("Digite la fecha de pago (ddmmaa): "))
-            h = int(input("Digite el numero de tarjeta de credito del nuevo/a cliente: "))
+            h = input("Digite el numero de tarjeta de credito del nuevo/a cliente: ")
             i = "pagado"
 
             nuevo_cliente = (a,b,c,d,e,f,g,h,i) #se crea esta tupla con todos las caracteristicas del cliente ingresado
@@ -187,36 +187,36 @@ def ModificarClientes(lector,database):
     FMenus.MenuClientes()
     while True:
         try:
-            a = int(input("¿Que desea modificar del cliente?"))
+            a = input("¿Que desea modificar del cliente?")
             break
         except:
             print("Opcion no valida, digite denuevo.")
-    if (a == 1):
+    if (a == '1'):
         b = input("Digite el nuevo nombre: ")
         lector.execute("UPDATE CLIENTES SET NOMBRE = ? WHERE CEDULA = ? ",(b,ide,))
-    if (a == 2):
+    if (a == '2'):
         b = input("Digite el nuevo apellido: ")
         lector.execute("UPDATE CLIENTES SET APELLIDO = ? WHERE CEDULA = ? ",(b,ide,))        
-    if (a == 3):
+    if (a == '3'):
         b = input("Digite el nuevo pais: ")
         lector.execute("UPDATE CLIENTES SET PAIS = ? WHERE CEDULA = ? ",(b,ide,))    
-    if (a == 4):
+    if (a == '4'):
         b = input("Digite el nuevo ciudad: ")
         lector.execute("UPDATE CLIENTES SET CIUDAD = ? WHERE CEDULA = ? ",(b,ide,))
-    if (a == 5):
+    if (a == '5'):
         b = input("Digite el nuevo numero celular: ")
         lector.execute("UPDATE CLIENTES SET  CELULAR = ? WHERE CEDULA = ? ",(b,ide,))
-    if (a == 6):
-        b = input("Digite la nuevo fecha de pago (ddmmaa):  ")
+    if (a == '6'):
+        b = int(input("Digite la nuevo fecha de pago (ddmmaa):  "))
         lector.execute("UPDATE CLIENTES SET FECHA = ? WHERE CEDULA = ? ",(b,ide,))
-    if (a == 7):
+    if (a == '7'):
         b = input("Digite el nuevo tarjeta de credito: ")
         lector.execute("UPDATE CLIENTES SET NTARJETA = ? WHERE CEDULA = ? ",(b,ide,))
-    if (a == 8):
+    if (a == '8'):
         b = input("digite el estado de pago del cliente [pagado/no pagado]: ")
         lector.execute("UPDATE CLIENTES SET ESTADO = ? WHERE CEDULA = ? ",(b,ide,))
 
-    if (a == 9):
+    if (a == '9'):
         pass
     database.commit()
     os.system('cls')
@@ -274,7 +274,7 @@ def ConsultarClientes(lector,database):
         FMenus.ImprimirTabla("CLIENTES")
 
     if(a == 7):
-        c = input("Digite la fecha del/a cliente(ddmmaa): ")
+        c = int(input("Digite la fecha del/a cliente(ddmmaa): "))
         lector.execute("SELECT * FROM CLIENTES WHERE FECHA = ?",(c,))
         d = lector.fetchall()
         FMenus.ImprimirTabla("CLIENTES")
@@ -309,7 +309,7 @@ def ConsultarClientes(lector,database):
 def AñadirPlanes(lector,database):
     while True:
         try:
-            a = int(input("Digite el codigo del nuevo plan: "))
+            a = input("Digite el codigo del nuevo plan: ")
             b = input("Digite el nombre del nuevo plan: ")
             c = int(input("Digite el valor del nuevo plan: "))
             d = int(input("Digite el la cantidad de canciones disponibles en del nuevo plan: "))
@@ -353,22 +353,22 @@ def ModificarPlanes(lector,database):
     FMenus.MenuPlanes()
     while True:
         try:
-            a = int(input("¿Que desea modificar del plan?"))
+            a = input("¿Que desea modificar del plan?")
             break
         except:
             print("Opcion no valida, digite denuevo.")
-    if (a == 1):
+    if (a == '1'):
         b = input("Digite el nuevo nombre  del plan: ")
         lector.execute("UPDATE PLANES SET NOMBRE = ? WHERE CODIGO = ? ",(b,cod,))
-    if (a == 2):
+    if (a == '2'):
         b = int(input("Digite el valor nuevo  del plan: "))
         lector.execute("UPDATE PLANES SET VALOR = ? WHERE CODIGO = ? ",(b,cod,))
         
-    if (a == 3):
+    if (a == '3'):
         b = int(input("Digite ela nueva cantidad de canciones del plan: "))
         lector.execute("UPDATE PLANES SET CANTIDAD = ? WHERE CODIGO = ? ",(b,cod,))
     
-    if (a == 4):
+    if (a == '4'):
         pass
     database.commit()
     os.system('cls')
@@ -412,6 +412,155 @@ def BuscarPlanes(lector,database):
     k = 0
     for i in range(len(d)):
         for j in d[i]:
+            if (k == b):
+                k = 0
+                print("")
+            print("|",end=" ")
+            print(j,end=" ")
+            print("|",end=" ")
+            k = k + 1
+    wait = input()
+    os.system('cls')
+    
+#####################################################################
+
+def AñadirCancionesCliente(lector,database):
+    while True:
+        try:
+            a = input("Digite la cedula del cliente: ")
+            b = input("Digite el codigo de la cancion que desea agregar: ")
+            
+            nueva_CanCliente = (a,b) 
+            lector.execute("INSERT INTO CANCIONESCLIENTE(IDCLIENTE, IDCANCION) VALUES(?,?)",nueva_CanCliente)
+            database.commit()
+            break
+        except:
+            print("Ocurrido un error, por favor digite denuevo.")
+    os.system('cls')
+
+def BorrarCancionesCliente(lector,database):
+    y = input("Digite el codigo de la cancion que desea eliminar: ")
+    while True:
+        try:
+            lector.execute("DELETE FROM CANCIONESCLIENTE WHERE IDCANCION = ?",(y,))
+            break
+        except:
+            print("Codigo no existente.")
+    database.commit()
+    os.system('cls')
+
+#def BuscarCancionesCliente():
+    
+def Mostrar(lector,tabla):
+    graficar.Simple()
+    print("")
+    b = 0
+    c = "0"
+    if (tabla == "CANCIONES"):
+        b = 6
+        print("")
+        print('''
+        1.) codigo
+        2.) nombre
+        3.) genero
+        4.) album
+        5.) interprete
+        ''')
+        d = input("Digite el orden que desea: ")
+        if (d == 1):
+            c = "CODIGO"
+        if (d == 2):
+            c = "NOMBRE"
+        if (d == 3):
+            c = "GENERO"
+        if (d == 4):
+            c = "ALBUM"
+        if (d == 5):
+            c = "INTERPRETE"
+        graficos.ImprimirTabla(tabla)
+        lector.execute("SELECT * FROM CANCIONES ORDER BY ?",(c,))
+    elif (tabla == "CLIENTES"):
+        b = 4
+        print('''
+        1.) cedula
+        2.) nombre
+        3.) apellido
+        4.) pais
+        5.) ciudad
+        6.) # celular
+        7.) fecha pago (ddmmaa)
+        8.) Tarjeta credito
+        9.) estado cuenta
+        ''')
+        print("")
+        d = input("Digite el orden que desea:")
+        if (d == 1):
+            c = "CEDULA"
+        if (d == 2):
+            c = "NOMBRE"
+        if (d == 3):
+            c = "APELLIDO"
+        if (d == 4):
+            c = "PAIS"
+        if (d == 5):
+            c = "CIUDAD"
+        if (d == 6):
+            c = "CELULAR"
+        if (d == 7):
+            c = "FECHA"
+        if (d == 8):
+            c = "NTARJETA"
+        if (d == 9):
+            c = "ESTADO"
+        graficos.ImprimirTabla(tabla)
+        lector.execute("SELECT * FROM CLIENTES ORDER BY ?",(c,))
+    elif (tabla == "PLANES"):
+        b = 6
+        print('''
+        1.) Codigo
+        2.) Nombre
+        3.) Valor
+        4.) Cantidad 
+        ''')
+        print("")
+        d = input("Digite el orden que desea:")
+        if (d == 1):
+            c = "CODIGO"
+        if (d == 2):
+            c = "NOMBRE"
+        if (d == 3):
+            c = "VALOR"
+        if (d == 4):
+            c = "CANTIDAD"
+        graficos.ImprimirTabla(tabla)
+        lector.execute("SELECT * FROM PLANES ORDER BY ?",(c,))
+    elif (tabla == "CANCIONESCLIENTE"):
+        b = 10
+        print('''
+        1.) codigo
+        2.) nombre
+        3.) genero
+        4.) album
+        5.) interprete
+        ''')
+        print("")
+        d = input("Digite el orden que desea:")
+        if (d == 1):
+            c = "CODIGO"
+        if (d == 2):
+            c = "NOMBRE"
+        if (d == 3):
+            c = "GENERO"
+        if (d == 4):
+            c = "ALBUM"
+        if (d == 5):
+            c = "INTERPRETE"
+        graficos.ImprimirTabla(tabla)
+        lector.execute("SELECT * FROM CANCIONESCLIENTE ORDER BY ?",(c,))
+    a = lector.fetchall()
+    k = 0
+    for i in range(len(a)):
+        for j in a[i]:
             if (k == b):
                 k = 0
                 print("")
