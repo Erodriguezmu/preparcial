@@ -4,8 +4,7 @@ def Menu():
     print("2.) Clientes")
     print("3.) Planes")
     print("4.) Planes por cliente")
-    print("5.) Listas")
-    print("6.) Salir")
+    print("5.) Salir")
     while True:
         try:
             opcion = int(input("Digite la opción: "))
@@ -45,16 +44,7 @@ def MenuLista():
             print("Numero no valido, escoga denuevo.")
     return opcion
     
-
-#def MenuAñadir():
     
-#def MenuBorrar():
-    
-#def MenuModificar():
-    
-#def MenuConsultar():
-    
-
 def MenuCanciones():
     print("1.) Nombre")
     print("2.) Genero")
