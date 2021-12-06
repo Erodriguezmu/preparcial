@@ -49,7 +49,7 @@ while condition ==  True:
         elif (opcion1 == 5):
                 pass
         else:
-                print("Opcion no valida.")
+                print("Opcion no valida.1")
 
     if (opcion == 2):
 
@@ -66,7 +66,7 @@ while condition ==  True:
         elif (opcion1 == 5):
                 pass
         else:
-                print("Opcion no valida.")
+                print("Opcion no valida.2")
 
     if (opcion == 3):
 
@@ -83,24 +83,20 @@ while condition ==  True:
         elif (opcion1 == 5):
                 pass
         else:
-                print("Opcion no valida.")
+                print("Opcion no valida.3")
 
     if (opcion == 4):
 
-        opcion1 = FMenus.MenuOpciones()
+        opcion1 = FMenus.MenuLista()
 
         if (opcion1 == 1):
                 funciones.AñadirCancionesCliente(lector,database)
         elif (opcion1 == 2):
                 funciones.BorrarCancionesCliente(lector,database)
         elif (opcion1 == 3):
-                funciones.ModificarCancionesCliente(lector,database)
-        elif (opcion1 == 4):
-                funciones.BuscarCancionesCliente(lector,database)
-        elif (opcion1 == 5):
                 pass
         else:
-                print("Opcion no valida.")
+                print("Opcion no valida.4")
 
     elif (opcion == 5):
         condition =(FMenus.Salir)
@@ -112,4 +108,3 @@ while condition ==  True:
 
 database.commit()
 database.close()
-
