@@ -20,7 +20,6 @@ def MenuOpciones():
     print("3.) Modificar")
     print("4.) Consultar")
     print("5.) Salir")
-
     while True:
         try:
             opcion = int(input("Digite la opción: "))
@@ -32,10 +31,8 @@ def MenuOpciones():
 def MenuLista():
     print("Seleccione la operacion que desea realizar")
     print("1.) Añadir")
-    print("1.) Eliminar")
-    print("2.) Modificar a mi lista")
-    print("3.) consultar de mi lista")
-    print("4.) Salir")
+    print("2.) Eliminar")
+    print("3.) Salir")
     while True:
         try:
             opcion = int(input("Digite la opción: "))
@@ -82,7 +79,10 @@ def ImprimirTabla(tabla):
         print("CODIGO"," ","NOMBRE"," ","VALOR"," ","CANTIDAD")
         print("")
         print("")
-    
+    if (tabla == "CANCIONESCLIENTE"):
+        print("IDCLIENTE"," ","IDCANCION")
+        print("")
+        print("")
     
 
 def Salir():
@@ -93,3 +93,4 @@ def Salir():
     else:
         pass
     return condition
+
