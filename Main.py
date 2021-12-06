@@ -8,17 +8,24 @@ database = sqlite3.connect("labasededatospooparcial.db")
 lector = database.cursor()
 
 try:
-    lector.execute("CREATE TABLE CANCIONES (CODIGO INTEGER(10) PRIMARY KEY,NOMBRE VARCHAR(30),GENERO VARCHAR(20),ALBUM VARCHAR(30), INTERPRETE VARCHAR(25))")
+    
+    lector.execute("CREATE TABLE CANCIONES (CODIGO CHAR(6) PRIMARY KEY,NOMBRE VARCHAR(30) not null,GENERO VARCHAR(20)not null,ALBUM VARCHAR(30)not null, INTERPRETE VARCHAR(25)not null)")
 except:
     pass
 
 try:
-    lector.execute("CREATE TABLE CLIENTES (CEDULA INTEGER(10) PRIMARY KEY,NOMBRE VARCHAR(25),APELLIDO VARCHAR(25), PAIS VARCHAR(20), CIUDAD VARCHAR(20),CELULAR INTEGER(10),FECHA INTEGER(7),NTARJETA INTEGER(10),ESTADO INTEGER (8))")
+    
+    lector.execute("CREATE TABLE CLIENTES (CEDULA CHAR(10) PRIMARY KEY,NOMBRE VARCHAR(25)not null,APELLIDO VARCHAR(25)not null, PAIS VARCHAR(20), CIUDAD VARCHAR(20),CELULAR CHAR(10),FECHA INTEGER(7),NTARJETA CHAR(10)not null,ESTADO VARCHAR (8)not null)")
 except:
     pass
 
 try:
-    lector.execute("CREATE TABLE PLANES (CODIGO INTEGER(9) PRIMARY KEY, NOMBRE VARCHAR(30), VALOR INTEGER(6), CANTIDAD INTEGER(6))")
+    
+    lector.execute("CREATE TABLE PLANES (CODIGO CHAR(4) PRIMARY KEY, NOMBRE VARCHAR(30)not null, VALOR INTEGER(6)not null, CANTIDAD INTEGER(6)not null)")
+except:
+    pass
+try:
+    lector.execute("CREATE TABLE CANCIONESCLIENTE (IDCLIENTE CHAR(10)PRIMARY KEY, IDCANCION CHAR(6)not null,CONSTRAINT FK_CLIENTE FOREIGN KEY (IDCLIENTE)REFERENCES CLIENTES(CEDULA),CONSTRAINT FK_CANCION FOREIGN KEY (IDCANCION)REFERENCES CANCIONES(CODIGO))")
 except:
     pass
 condition = True
@@ -78,7 +85,24 @@ while condition ==  True:
         else:
                 print("Opcion no valida.")
 
-    elif (opcion == 6):
+    if (opcion == 4):
+
+        opcion1 = FMenus.MenuOpciones()
+
+        if (opcion1 == 1):
+                funciones.AñadirCancionesCliente(lector,database)
+        elif (opcion1 == 2):
+                funciones.BorrarCancionesCliente(lector,database)
+        elif (opcion1 == 3):
+                funciones.ModificarCancionesCliente(lector,database)
+        elif (opcion1 == 4):
+                funciones.BuscarCancionesCliente(lector,database)
+        elif (opcion1 == 5):
+                pass
+        else:
+                print("Opcion no valida.")
+
+    elif (opcion == 5):
         condition =(FMenus.Salir)
 
     else:
@@ -88,3 +112,4 @@ while condition ==  True:
 
 database.commit()
 database.close()
+
