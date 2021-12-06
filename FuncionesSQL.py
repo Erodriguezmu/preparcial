@@ -3,7 +3,7 @@ import sqlite3
 import FuncionesMenu as FMenus
 import os
 
-def AñadirCanciones(lector,database):
+def AñadirCanciones(lector,database):#Funcion para añadir canciones a la tabla canciones
     while True:
         try:
             a = input("Digite el codigo de la nueva cancion: ")
@@ -16,15 +16,16 @@ def AñadirCanciones(lector,database):
             lector.execute("INSERT INTO CANCIONES(CODIGO, NOMBRE, GENERO, ALBUM, INTERPRETE) VALUES(?,?,?,?,?)",nueva_cancion)
             database.commit()
             break
-        except:
+        except: #se activa cuando ingresa datos erroneos o intenta ingresar una cancion que ya existe.
             print("Ocurrido un error, por favor digite denuevo.")
     os.system('cls')
 
-def BorrarCanciones(lector,database):
+def BorrarCanciones(lector,database):# funcion que borra la cancion de la base de datos y de la lista de canciones del cliente
     y = input("Digite el codigo de la cancion que desea eliminar: ")
     while True:
         try:
             lector.execute("DELETE FROM CANCIONES WHERE CODIGO = ?",(y,))
+            lector.execute("DELETE FROM CANCIONESCLIENTE WHERE IDCANCION = ?",(y,))
             break
         except:
             print("Codigo no existente.")
@@ -32,14 +33,14 @@ def BorrarCanciones(lector,database):
     os.system('cls')
 
 
-def ModificarCanciones(lector,database):
+def ModificarCanciones(lector,database):# funcion que permite elegir que atributo de una cancion existente desea cambiar
     cod = input("Digite el codigo de la cancion que desee modificar: ")
     lector.execute("SELECT * FROM CANCIONES WHERE CODIGO = ?",(cod,))
     y = lector.fetchall()
     x = 0
     w = 5
     k = 0
-    for i in range(len(y)):
+    for i in range(len(y)): #separa por | las canciones mostradas
         for j in y[i]:
             if (k == w):
                 k = 0
@@ -75,7 +76,7 @@ def ModificarCanciones(lector,database):
     database.commit()
     os.system('cls')
 
-def ConsultarCanciones(lector,database):
+def ConsultarCanciones(lector,database):# puede buscar las canciones por uno de sus atributos
     print("")
     print('''
     1.) codigo
@@ -134,7 +135,7 @@ def ConsultarCanciones(lector,database):
     
 ########################################################################
 
-def AñadirClientes(lector,database):
+def AñadirClientes(lector,database): #añade clientes, es necesario poner los 8 datos
     while True:
         try:
             a = input("Digite la cedula del nuevo/a cliente: ")
@@ -145,7 +146,7 @@ def AñadirClientes(lector,database):
             f = input("Digite el numero celular del nuevo/a cliente: ")
             g = int(input("Digite la fecha de pago (ddmmaa): "))
             h = input("Digite el numero de tarjeta de credito del nuevo/a cliente: ")
-            i = "pagado"
+            i = "pagado" #cuando se añade un nuevo cliente se presume que por lo menos ha pagado el primer mes
 
             nuevo_cliente = (a,b,c,d,e,f,g,h,i) #se crea esta tupla con todos las caracteristicas del cliente ingresado
             lector.execute("INSERT INTO CLIENTES(CEDULA, NOMBRE, APELLIDO, PAIS, CIUDAD,  CELULAR,  FECHA,  NTARJETA, ESTADO) VALUES(?,?,?,?,?,?,?,?,?)",nuevo_cliente)
@@ -155,7 +156,7 @@ def AñadirClientes(lector,database):
             print("Ocurrido un error, por favor digite denuevo.")
     os.system('cls')
 
-def BorrarClientes(lector,database):
+def BorrarClientes(lector,database): # borra un cliente luego de ingresar su cedula.
     y = input("Digite la cedula del cliente que desea eliminar: ")
     while True:
         try:
@@ -167,7 +168,7 @@ def BorrarClientes(lector,database):
     os.system('cls')
 
 
-def ModificarClientes(lector,database):
+def ModificarClientes(lector,database): #ingresa la cedula y luego pregunta que atributo del cliente desea modificar.
     ide = input("Digite el # de identificacion del cliente que desee modificar: ")
     lector.execute("SELECT * FROM CLIENTES WHERE CEDULA = ?",(ide,))
     y = lector.fetchall()
@@ -221,7 +222,7 @@ def ModificarClientes(lector,database):
     database.commit()
     os.system('cls')
 
-def ConsultarClientes(lector,database):
+def ConsultarClientes(lector,database): #consultar clientes dependiendo de la opcion de busqueda.
     print("")
     print('''
     1.) cedula
@@ -306,7 +307,7 @@ def ConsultarClientes(lector,database):
     os.system('cls')
 
 #####################################################################################
-def AñadirPlanes(lector,database):
+def AñadirPlanes(lector,database): #funcion para añadir planes disponibles para clientes.
     while True:
         try:
             a = input("Digite el codigo del nuevo plan: ")
@@ -424,7 +425,7 @@ def BuscarPlanes(lector,database):
     
 #####################################################################
 
-def AñadirCancionesCliente(lector,database):
+def AñadirCancionesCliente(lector,database): #añade canciones a la tabla canciones cliente, con el id del cliente y el id de la cancion
     while True:
         try:
             a = input("Digite la cedula del cliente: ")
@@ -438,7 +439,7 @@ def AñadirCancionesCliente(lector,database):
             print("Ocurrido un error, por favor digite denuevo.")
     os.system('cls')
 
-def BorrarCancionesCliente(lector,database):
+def BorrarCancionesCliente(lector,database): #borra canciones de la lista luego de insertar el id de la cancion
     y = input("Digite el codigo de la cancion que desea eliminar: ")
     while True:
         try:
@@ -451,7 +452,7 @@ def BorrarCancionesCliente(lector,database):
 
 #def BuscarCancionesCliente():
     
-def Mostrar(lector,tabla):
+def Mostrar(lector,tabla): # esta funcion recibe una tabla y la muestra en el orden que seleccione
     graficar.Simple()
     print("")
     b = 0
@@ -571,3 +572,4 @@ def Mostrar(lector,tabla):
     wait = input()
     os.system('cls')
     
+
