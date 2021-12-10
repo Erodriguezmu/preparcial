@@ -387,27 +387,27 @@ def BuscarPlanes(lector,database):
     a = int(input("Digite la opcion de busqueda: "))
     if(a == 1):
         c = input("Digite el codigo del plan: ")
-        lector.execute("SELECT * FROM ESTUDIANTES WHERE CODIGO = ?",(c,))
+        lector.execute("SELECT * FROM PLANES WHERE CODIGO = ?",(c,))
         d = lector.fetchall()
-        FMenus.ImprimirTabla("ESTUDIANTES")
+        FMenus.ImprimirTabla("PLANES")
 
     if (a == 2):
         c = input("Digite el nombre del plan: ")
-        lector.execute("SELECT * FROM ESTUDIANTES WHERE NOMBRE = ?",(c,))
+        lector.execute("SELECT * FROM PLANES WHERE NOMBRE = ?",(c,))
         d = lector.fetchall()
-        FMenus.ImprimirTabla("ESTUDIANTES")
+        FMenus.ImprimirTabla("PLANES")
 
     if (a == 3):
         c = int(input("Digite el valor del plan: "))
-        lector.execute("SELECT * FROM ESTUDIANTES WHERE VALOR = ?",(c,))
+        lector.execute("SELECT * FROM PLANES WHERE VALOR = ?",(c,))
         d = lector.fetchall()
-        FMenus.ImprimirTabla("ESTUDIANTES")
+        FMenus.ImprimirTabla("PLANES")
 
     if (a == 4):
         c = int(input("Digite el cantidad del plan: "))
-        lector.execute("SELECT * FROM ESTUDIANTES WHERE CANTIDAD = ?",(c,))
+        lector.execute("SELECT * FROM PLANES WHERE CANTIDAD = ?",(c,))
         d = lector.fetchall()
-        FMenus.ImprimirTabla("ESTUDIANTES")
+        FMenus.ImprimirTabla("PLANES")
 
     b = 6
     k = 0
@@ -425,14 +425,14 @@ def BuscarPlanes(lector,database):
     
 #####################################################################
 
-def AñadirCancionesCliente(lector,database): #añade canciones a la tabla canciones cliente, con el id del cliente y el id de la cancion
+def AñadirLista(lector,database): #añade canciones a la tabla canciones cliente, con el id del cliente y el id de la cancion
     while True:
         try:
             a = input("Digite la cedula del cliente: ")
             b = input("Digite el codigo de la cancion que desea agregar: ")
             
             nueva_CanCliente = (a,b) 
-            lector.execute("INSERT INTO CANCIONESCLIENTE(IDCLIENTE, IDCANCION) VALUES(?,?)",nueva_CanCliente)
+            lector.execute("INSERT INTO LISTA(IDCLIENTE, IDCANCION) VALUES(?,?)",nueva_CanCliente)
             database.commit()
             break
         except:
@@ -443,7 +443,7 @@ def BorrarCancionesCliente(lector,database): #borra canciones de la lista luego 
     y = input("Digite el codigo de la cancion que desea eliminar: ")
     while True:
         try:
-            lector.execute("DELETE FROM CANCIONESCLIENTE WHERE IDCANCION = ?",(y,))
+            lector.execute("DELETE FROM LISTA WHERE IDCANCION = ?",(y,))
             break
         except:
             print("Codigo no existente.")
@@ -535,29 +535,21 @@ def Mostrar(lector,tabla): # esta funcion recibe una tabla y la muestra en el or
             c = "CANTIDAD"
         graficos.ImprimirTabla(tabla)
         lector.execute("SELECT * FROM PLANES ORDER BY ?",(c,))
-    elif (tabla == "CANCIONESCLIENTE"):
+    elif (tabla == "LISTA"):
         b = 10
         print('''
-        1.) codigo
-        2.) nombre
-        3.) genero
-        4.) album
-        5.) interprete
+        1.) idcliente
+        2.) idcancion
         ''')
         print("")
         d = input("Digite el orden que desea:")
         if (d == 1):
-            c = "CODIGO"
+            c = "IDCLIENTE"
         if (d == 2):
-            c = "NOMBRE"
-        if (d == 3):
-            c = "GENERO"
-        if (d == 4):
-            c = "ALBUM"
-        if (d == 5):
-            c = "INTERPRETE"
+            c = "IDCANCION"
+    
         graficos.ImprimirTabla(tabla)
-        lector.execute("SELECT * FROM CANCIONESCLIENTE ORDER BY ?",(c,))
+        lector.execute("SELECT * FROM LISTA ORDER BY ?",(c,))
     a = lector.fetchall()
     k = 0
     for i in range(len(a)):
@@ -572,4 +564,3 @@ def Mostrar(lector,tabla): # esta funcion recibe una tabla y la muestra en el or
     wait = input()
     os.system('cls')
     
-
