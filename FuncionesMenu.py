@@ -3,7 +3,7 @@ def Menu():
     print("1.) Canciones")
     print("2.) Clientes")
     print("3.) Planes")
-    print("4.) Planes por cliente")
+    print("4.) Lista")
     print("5.) Salir")
     while True:
         try:
@@ -93,4 +93,3 @@ def Salir():
     else:
         pass
     return condition
-
