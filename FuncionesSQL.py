@@ -25,7 +25,7 @@ def BorrarCanciones(lector,database):# funcion que borra la cancion de la base d
     while True:
         try:
             lector.execute("DELETE FROM CANCIONES WHERE CODIGO = ?",(y,))
-            lector.execute("DELETE FROM CANCIONESCLIENTE WHERE IDCANCION = ?",(y,))
+            #lector.execute("DELETE FROM CANCIONESCLIENTE WHERE IDCANCION = ?",(y,))
             break
         except:
             print("Codigo no existente.")
