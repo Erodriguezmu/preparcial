@@ -8,11 +8,6 @@ database = sqlite3.connect("labasededatospooparcial.db")
 lector = database.cursor()
 
 try:
-    lector.execute("DROP TABLE CANCIONESCIENTE")
-except:
-    pass
-
-try:
     
     lector.execute("CREATE TABLE CANCIONES (CODIGO CHAR(6) PRIMARY KEY,NOMBRE VARCHAR(30) not null,GENERO VARCHAR(20)not null,ALBUM VARCHAR(30)not null, INTERPRETE VARCHAR(25)not null)")
 except:
@@ -20,7 +15,7 @@ except:
 
 try:
     
-    lector.execute("CREATE TABLE CLIENTES (CEDULA CHAR(10) PRIMARY KEY,NOMBRE VARCHAR(25)not null,APELLIDO VARCHAR(25)not null, PAIS VARCHAR(20), CIUDAD VARCHAR(20),CELULAR CHAR(10),FECHA INTEGER(7),NTARJETA CHAR(10)not null,ESTADO VARCHAR (8)not null)")
+    lector.execute("CREATE TABLE CLIENTES (CEDULA CHAR(10) PRIMARY KEY,NOMBRE VARCHAR(25)not null,APELLIDO VARCHAR(25)not null, PAIS VARCHAR(20), CIUDAD VARCHAR(20),CELULAR CHAR(10),FECHA INTEGER(7),NTARJETA CHAR(10)not null,ESTADO VARCHAR (8)not null,IDPLAN CHAR(4) not null,CONSTRAINT FK_PLAN FOREIGN KEY (IDPLAN)REFERENCES PLANES(CODIGO))")
 except:
     pass
 
@@ -85,7 +80,7 @@ while condition ==  True:
         elif (opcion1 == 3):
                 funciones.ModificarPlanes(lector,database)
         elif (opcion1 == 4):
-                funciones.BuscarPlanes(lector,database)
+                funciones.ConsultarPlanes(lector,database)
         elif (opcion1 == 5):
                 pass
         else:
@@ -96,9 +91,9 @@ while condition ==  True:
         opcion1 = FMenus.MenuLista()
 
         if (opcion1 == 1):
-                funciones.AñadirCancionesCliente(lector,database)
+                funciones.AñadirLista(lector,database)
         elif (opcion1 == 2):
-                funciones.BorrarCancionesCliente(lector,database)
+                funciones.BorrarCancionesLista(lector,database)
         elif (opcion1 == 3):
                 pass
         else:
