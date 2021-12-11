@@ -79,7 +79,7 @@ def ImprimirTabla(tabla):
         print("CODIGO"," ","NOMBRE"," ","VALOR"," ","CANTIDAD")
         print("")
         print("")
-    if (tabla == "CANCIONESCLIENTE"):
+    if (tabla == "LISTA"):
         print("IDCLIENTE"," ","IDCANCION")
         print("")
         print("")
