@@ -24,11 +24,15 @@ try:
     lector.execute("CREATE TABLE PLANES (CODIGO CHAR(4) PRIMARY KEY, NOMBRE VARCHAR(30)not null, VALOR INTEGER(6)not null, CANTIDAD INTEGER(6)not null)")
 except:
     pass
+
+
 try:
 
-    lector.execute("CREATE TABLE LISTA (IDCLIENTE CHAR(10), IDCANCION CHAR(6),CONSTRAINT ID PRIMARY KEY (IDCLIENTE,IDCANCION),CONSTRAINT FK_CLIENTE FOREIGN KEY (IDCLIENTE)REFERENCES CLIENTES(CEDULA),CONSTRAINT FK_CANCION FOREIGN KEY (IDCANCION)REFERENCES CANCIONES(CODIGO))")
+    lector.execute("CREATE TABLE LISTA (IDCLIENTE CHAR(10), IDCANCION CHAR(6),CONSTRAINT ID PRIMARY KEY (IDCLIENTE,IDCANCION),CONSTRAINT FK_CLIENTE FOREIGN KEY (IDCLIENTE)REFERENCES CLIENTES(CEDULA),CONSTRAINT FK_CANCION FOREIGN KEY (IDCANCION)REFERENCES CANCIONES(CODIGO) ON DELETE CASCADE ON UPDATE CASCADE)")
 except:
     pass
+
+
 condition = True
 os.system('cls')
 while condition ==  True:
@@ -95,6 +99,9 @@ while condition ==  True:
         elif (opcion1 == 2):
                 funciones.BorrarCancionesLista(lector,database)
         elif (opcion1 == 3):
+                funciones.ConsultarLista(lector,database)
+
+        elif (opcion1 == 4):
                 pass
         else:
                 print("Opcion no valida.4")
