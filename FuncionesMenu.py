@@ -32,7 +32,8 @@ def MenuLista():
     print("Seleccione la operacion que desea realizar")
     print("1.) Añadir")
     print("2.) Eliminar")
-    print("3.) Salir")
+    print("3.) consultar")
+    print("4.) Salir")
     while True:
         try:
             opcion = int(input("Digite la opción: "))
