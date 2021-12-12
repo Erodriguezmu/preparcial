@@ -112,3 +112,10 @@ while condition ==  True:
 
     else:
         print("")
+        
+   
+    
+
+database.commit()
+database.close()
+
