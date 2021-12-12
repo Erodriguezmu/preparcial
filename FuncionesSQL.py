@@ -470,10 +470,11 @@ def AñadirLista(lector,database): #añade canciones a la tabla canciones client
     
 
 def BorrarCancionesLista(lector,database): #borra canciones de la lista luego de insertar el id de la cancion
-    y = input("Digite el codigo de la cancion que desea eliminar: ")
+    a = input("Digite la cedula del cliente: ")
     while True:
         try:
-            lector.execute("DELETE FROM LISTA WHERE IDCANCION = ?",(y,))
+            y = input("Digite el codigo de la cancion que desea eliminar: ")
+            lector.execute("DELETE FROM LISTA WHERE IDCLIENTE = ? AND IDCANCION = ?",(a,y))
             break
         except:
             print("Codigo no existente1.")
@@ -642,4 +643,3 @@ def Mostrar(lector,tabla): # esta funcion recibe una tabla y la muestra en el or
     wait = input()
     os.system('cls')
     
-
