@@ -1,4 +1,5 @@
 import sqlite3
+import smtplib, ssl #libreria para el envio de correo electronico y ssl para conexion segura
 import FuncionesSQL as funciones
 import FuncionesMenu as FMenus
 import os
@@ -111,8 +112,3 @@ while condition ==  True:
 
     else:
         print("")
-
-    
-
-database.commit()
-database.close()
