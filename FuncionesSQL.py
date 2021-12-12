@@ -38,7 +38,7 @@ def ModificarCanciones(lector,database):# funcion que permite elegir que atribut
     lector.execute("SELECT * FROM CANCIONES WHERE CODIGO = ?",(cod,))
     y = lector.fetchall()
     x = 0
-    w = 5
+    w = 5 #el tamaño de w esta determinado por la cantidad de atributos que tiene la tabla canciones
     k = 0
     for i in range(len(y)): #separa por | las canciones mostradas
         for j in y[i]:
@@ -50,10 +50,10 @@ def ModificarCanciones(lector,database):# funcion que permite elegir que atribut
             print("|",end=" ")
             k = k + 1
     print("")
-    FMenus.MenuCanciones()
+    FMenus.MenuCanciones() #muestra las opciones que puede modificar de la tabla
     while True:
         try:
-            a = input("¿Que desea modificar de la cancion?")
+            a = input("¿Que desea modificar de la cancion?") #tiene que poner uno de los campos mostrados para avanzar
             break
         except:
             print("Opcion no valida, digite denuevo.")
@@ -76,15 +76,15 @@ def ModificarCanciones(lector,database):# funcion que permite elegir que atribut
     database.commit()
     os.system('cls')
 
-def ConsultarCanciones(lector,database):# puede buscar las canciones por uno de sus atributos
-    print('''
-    1.) Consulta de todo el modulo.
+def ConsultarCanciones(lector,database):# se cumplen dos opciones de consulta
+    print(''' 
+    1.) Consulta de todo el modulo. 
     2.) Consulta especifica por uno de los campos.
-    ''')
-    print("")
+    ''')      #el primer tipo de consulta muestra todas las canciones guardadas dependiendo del orden que elija el usuario
+    print("") #la segunda opcion permite buscar uno de los registros dependiendo de la opcion elegida
     m=int(input("Elija el tipo de consulta que desea realizar:"))
     if(m == 1):
-        Mostrar(lector,"CANCIONES")
+        Mostrar(lector,"CANCIONES")# la funcion mostrar imprime los atributos de la tabla para facilitar la comprension de los datos mostrados
     if(m == 2):
         
         print("")
@@ -128,7 +128,7 @@ def ConsultarCanciones(lector,database):# puede buscar las canciones por uno de 
             d = lector.fetchall()
             FMenus.ImprimirTabla("CANCIONES")
 
-        b = 7
+        b = 7 #esta operacion sirve para poner | entre los valores mostrados y separarlos para que sea visualmente mas entendible
         k = 0
         for i in range(len(d)):
             for j in d[i]:
@@ -184,9 +184,9 @@ def ModificarClientes(lector,database): #ingresa la cedula y luego pregunta que 
     lector.execute("SELECT * FROM CLIENTES WHERE CEDULA = ?",(ide,))
     y = lector.fetchall()
     x = 0
-    w = 9
+    w = 10 #el tamaño de w esta determinado por la cantidad de atributos que tiene la tabla clientes
     k = 0
-    for i in range(len(y)):
+    for i in range(len(y)): #esta operacion sirve para poner | entre los valores mostrados y separarlos para que sea visualmente mas entendible
         for j in y[i]:
             if (k == w):
                 k = 0
@@ -237,8 +237,8 @@ def ConsultarClientes(lector,database): #consultar clientes dependiendo de la op
     print('''
     1.) Consulta de todo el modulo.
     2.) Consulta especifica por uno de los campos.
-    ''')
-    print("")
+    ''')    #el primer tipo de consulta muestra todas los guardados dependiendo del orden que elija el usuario
+    print("") #la segunda opcion permite buscar uno de los registros dependiendo de la opcion elegida
     m=int(input("Elija el tipo de consulta que desea realizar:"))
     if(m == 1):
         Mostrar(lector,"CLIENTES")
@@ -314,7 +314,7 @@ def ConsultarClientes(lector,database): #consultar clientes dependiendo de la op
 
         b = 7
         k = 0
-        for i in range(len(d)):
+        for i in range(len(d)): #esta operacion sirve para poner | entre los valores mostrados y separarlos para que sea visualmente mas entendible
             for j in d[i]:
                 if (k == b):
                     k = 0
@@ -361,7 +361,7 @@ def ModificarPlanes(lector,database):
     x = 0
     w = 4
     k = 0
-    for i in range(len(y)):
+    for i in range(len(y)): #esta operacion sirve para poner | entre los valores mostrados y separarlos para que sea visualmente mas entendible
         for j in y[i]:
             if (k == w):
                 k = 0
@@ -394,15 +394,15 @@ def ModificarPlanes(lector,database):
     database.commit()
     os.system('cls')
 
-def ConsultarPlanes(lector,database):
+def ConsultarPlanes(lector,database):# se cumplen dos opciones de consulta
     print('''
     1.) Consulta de todo el modulo.
     2.) Consulta especifica por uno de los campos.
-    ''')
-    print("")
+    ''')#el primer tipo de consulta muestra todas las canciones guardadas dependiendo del orden que elija el usuario
+    print("")#la segunda opcion permite buscar uno de los registros dependiendo de la opcion elegida
     m=int(input("Elija el tipo de consulta que desea realizar:"))
     if(m == 1):
-        Mostrar(lector,"PLANES")
+        Mostrar(lector,"PLANES")# la funcion mostrar imprime los atributos de la tabla para facilitar la comprension de los datos mostrados
     if(m == 2):
         print("")
         print('''
@@ -440,7 +440,7 @@ def ConsultarPlanes(lector,database):
 
         b = 6
         k = 0
-        for i in range(len(d)):
+        for i in range(len(d)): #esta operacion sirve para poner | entre los valores mostrados y separarlos para que sea visualmente mas entendible
             for j in d[i]:
                 if (k == b):
                     k = 0
@@ -454,7 +454,7 @@ def ConsultarPlanes(lector,database):
     
 #####################################################################
 
-def AñadirLista(lector,database): #añade canciones a la tabla canciones cliente, con el id del cliente y el id de la cancion
+def AñadirLista(lector,database): #añade canciones a la tabla canciones cliente, con el id del cliente y el id de la cancion que son la llave compuesta
     while True:
         try:
             a = input("Digite la cedula del cliente: ")
@@ -469,24 +469,24 @@ def AñadirLista(lector,database): #añade canciones a la tabla canciones client
 
     
 
-def BorrarCancionesLista(lector,database): #borra canciones de la lista luego de insertar el id de la cancion
+def BorrarCancionesLista(lector,database): #borra canciones de la lista luego de insertar el id de la cancion, luego de ingresar cliente
     a = input("Digite la cedula del cliente: ")
     while True:
         try:
             y = input("Digite el codigo de la cancion que desea eliminar: ")
             lector.execute("DELETE FROM LISTA WHERE IDCLIENTE = ? AND IDCANCION = ?",(a,y))
-            break
+            break #asi no borra todos los registros que tenga la cancion sino la que corresponde a ese cliente
         except:
             print("Codigo no existente1.")
     database.commit()
     os.system('cls')
 
-def ConsultarLista(lector,database):
+def ConsultarLista(lector,database):# se cumplen dos opciones de consulta
     print('''
     1.) Consulta de todo el modulo.
     2.) Consulta especifica por uno de los campos.
-    ''')
-    print("")
+    ''')#el primer tipo de consulta muestra todas las canciones guardadas dependiendo del orden que elija el usuario
+    print("")#la segunda opcion permite buscar uno de los registros dependiendo de la opcion elegida
     m=int(input("Elija el tipo de consulta que desea realizar:"))
     if(m == 1):
         Mostrar(lector,"LISTA")
@@ -502,7 +502,7 @@ def ConsultarLista(lector,database):
         if(a == 1):
             c = input("Digite la id del cliente : ")
             lector.execute("SELECT IDCLIENTE,IDCANCION,NOMBRE,INTERPRETE FROM LISTA JOIN CANCIONES ON LISTA.IDCANCION=CANCIONES.CODIGO WHERE IDCLIENTE = ?",(c,))
-            d = lector.fetchall()
+            d = lector.fetchall()#se requirio usar join para consultar ambas tablas y poder extraer tambien el nombre de la cancion y el interprete
             FMenus.ImprimirTabla("LISTA")
 
         if (a == 2):
@@ -515,7 +515,7 @@ def ConsultarLista(lector,database):
 
         b = 4
         k = 0
-        for i in range(len(d)):
+        for i in range(len(d)): #esta operacion sirve para poner | entre los valores mostrados y separarlos para que sea visualmente mas entendible
             for j in d[i]:
                 if (k == b):
                     k = 0
@@ -630,7 +630,7 @@ def Mostrar(lector,tabla): # esta funcion recibe una tabla y la muestra en el or
         lector.execute("SELECT * FROM LISTA ORDER BY %s"%(c))
     a = lector.fetchall()
     k = 0
-    for i in range(len(a)):
+    for i in range(len(a)): #esta operacion sirve para poner | entre los valores mostrados y separarlos para que sea visualmente mas entendible
         for j in a[i]:
             if (k == b):
                 k = 0
