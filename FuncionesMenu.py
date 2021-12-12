@@ -84,7 +84,6 @@ def ImprimirTabla(tabla):
         print("IDCLIENTE"," ","IDCANCION")
         print("")
         print("")
-    
 
 def Salir():
     condition = True
