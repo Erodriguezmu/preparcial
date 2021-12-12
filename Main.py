@@ -7,7 +7,7 @@ import os
 database = sqlite3.connect("labasededatospooparcial.db")
 
 lector = database.cursor()
-
+# Creacion de las tablas necesarias
 try:
     
     lector.execute("CREATE TABLE CANCIONES (CODIGO CHAR(6) PRIMARY KEY,NOMBRE VARCHAR(30) not null,GENERO VARCHAR(20)not null,ALBUM VARCHAR(30)not null, INTERPRETE VARCHAR(25)not null)")
@@ -28,7 +28,7 @@ except:
 
 
 try:
-
+    #la tabla lista es una tabla que posee dos llaves foraneas como llave primaria compuesta.
     lector.execute("CREATE TABLE LISTA (IDCLIENTE CHAR(10), IDCANCION CHAR(6),CONSTRAINT ID PRIMARY KEY (IDCLIENTE,IDCANCION),CONSTRAINT FK_CLIENTE FOREIGN KEY (IDCLIENTE)REFERENCES CLIENTES(CEDULA),CONSTRAINT FK_CANCION FOREIGN KEY (IDCANCION)REFERENCES CANCIONES(CODIGO) ON DELETE CASCADE ON UPDATE CASCADE)")
 except:
     pass
@@ -37,12 +37,12 @@ except:
 condition = True
 os.system('cls')
 while condition ==  True:
-
-    opcion =FMenus.Menu()
+#
+    opcion =FMenus.Menu() #llama a la primera funcion de menu que usaremos 
 
     if (opcion == 1):
 
-        opcion1 = FMenus.MenuOpciones()
+        opcion1 = FMenus.MenuOpciones() #el menu opciones tiene las mismas 4 opciones para cada una de las tablas (añadir,borrar,modificar,consultar)
 
         if (opcion1 == 1):
                 funciones.AñadirCanciones(lector,database)
@@ -93,7 +93,7 @@ while condition ==  True:
 
     if (opcion == 4):
 
-        opcion1 = FMenus.MenuLista()
+        opcion1 = FMenus.MenuLista() #la lista tiene un menu diferente sin la opcion modificar puesto que solo admite añadir,borrar y consultar.
 
         if (opcion1 == 1):
                 funciones.AñadirLista(lector,database)
@@ -112,10 +112,8 @@ while condition ==  True:
 
     else:
         print("")
-        
-   
+
     
 
 database.commit()
 database.close()
-
