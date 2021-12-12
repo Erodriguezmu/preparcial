@@ -480,7 +480,51 @@ def BorrarCancionesLista(lector,database): #borra canciones de la lista luego de
     database.commit()
     os.system('cls')
 
-#def BuscarCancionesCliente():
+def ConsultarLista(lector,database):
+    print('''
+    1.) Consulta de todo el modulo.
+    2.) Consulta especifica por uno de los campos.
+    ''')
+    print("")
+    m=int(input("Elija el tipo de consulta que desea realizar:"))
+    if(m == 1):
+        Mostrar(lector,"LISTA")
+    if(m == 2):
+        print("")
+        print('''
+        1.) idcliente
+        2.) idcancion 
+        ''')
+        print("")
+        d = []
+        a = int(input("Digite la opcion de busqueda: "))
+        if(a == 1):
+            c = input("Digite la id del cliente : ")
+            lector.execute("SELECT IDCLIENTE,IDCANCION,NOMBRE,INTERPRETE FROM LISTA JOIN CANCIONES ON LISTA.IDCANCION=CANCIONES.CODIGO WHERE IDCLIENTE = ?",(c,))
+            d = lector.fetchall()
+            FMenus.ImprimirTabla("LISTA")
+
+        if (a == 2):
+            c = input("Digite el id de la cancion: ")
+            lector.execute("SELECT IDCLIENTE,IDCANCION,NOMBRE,INTERPRETE FROM LISTA JOIN CANCIONES ON LISTA.IDCANCION=CANCIONES.CODIGO WHERE IDCANCION = ?",(c,))
+            d = lector.fetchall()
+            FMenus.ImprimirTabla("LISTA")
+
+        
+
+        b = 4
+        k = 0
+        for i in range(len(d)):
+            for j in d[i]:
+                if (k == b):
+                    k = 0
+                    print("")
+                print("|",end=" ")
+                print(j,end=" ")
+                print("|",end=" ")
+                k = k + 1
+    wait = input()
+    os.system('cls')
     
 def Mostrar(lector,tabla): # esta funcion recibe una tabla y la muestra en el orden que seleccione
     print("")
@@ -598,3 +642,4 @@ def Mostrar(lector,tabla): # esta funcion recibe una tabla y la muestra en el or
     wait = input()
     os.system('cls')
     
+
