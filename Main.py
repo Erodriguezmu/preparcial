@@ -116,6 +116,7 @@ while condition ==  True:
         print("")
 
     
+    
 
 database.commit()
 database.close()
