@@ -37,7 +37,7 @@ except:
 condition = True
 os.system('cls')
 while condition ==  True:
-#
+
     opcion =FMenus.Menu() #llama a la primera funcion de menu que usaremos 
 
     if (opcion == 1):
@@ -115,7 +115,6 @@ while condition ==  True:
     else:
         print("")
 
-    
     
 
 database.commit()
