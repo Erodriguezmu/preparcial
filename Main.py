@@ -101,8 +101,10 @@ while condition ==  True:
                 funciones.BorrarCancionesLista(lector,database)
         elif (opcion1 == 3):
                 funciones.ConsultarLista(lector,database)
-
         elif (opcion1 == 4):
+                funciones.ReproducirCancion(lector,database)
+
+        elif (opcion1 == 5):
                 pass
         else:
                 print("Opcion no valida.4")
