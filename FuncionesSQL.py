@@ -454,21 +454,32 @@ def ConsultarPlanes(lector,database):# se cumplen dos opciones de consulta
     
 #####################################################################
 
-def AñadirLista(lector,database): #añade canciones a la tabla canciones cliente, con el id del cliente y el id de la cancion que son la llave compuesta
+def AñadirLista(lector,database):#añade canciones a la tabla canciones cliente, con el id del cliente y el id de la cancion que son la llave compuesta
     while True:
-        try:
-            a = input("Digite la cedula del cliente: ")
-            b = input("Digite el codigo de la cancion que desea agregar: ")   
-            nueva_CanCliente = (a,b) 
-            lector.execute("INSERT INTO LISTA(IDCLIENTE, IDCANCION) VALUES(?,?)",nueva_CanCliente)
-            database.commit()
+        a = input("Digite la cedula del cliente: ")
+        lector.execute("SELECT * FROM CLIENTES WHERE CEDULA = ?",(a,))
+        if (len(lector.fetchall()) == 0):
+            print("Cliente no encontrado")
+        else:
+            while True:
+                b = input("Digite el codigo de la cancion que desea agregar: ")
+                lector.execute("SELECT * FROM CANCIONES WHERE CODIGO = ?",(b,))
+                if(len(lector.fetchall())==0):
+                    print("Cancion no encontrada")
+                else:
+                    while True:
+                        try: 
+                            nueva_CanCliente = (a,b)
+                            lector.execute("INSERT INTO LISTA(IDCLIENTE, IDCANCION) VALUES(?,?)",nueva_CanCliente)
+                            database.commit()
+                            break
+                        except:
+                            print("ha ocurrido un error, intentelo de nuevo.")
+                            break
+                    break
             break
-        except:
-            print("Ocurrido un error, por favor digite denuevo.")
     os.system('cls')
-
-    
-
+            
 def BorrarCancionesLista(lector,database): #borra canciones de la lista luego de insertar el id de la cancion, luego de ingresar cliente
     a = input("Digite la cedula del cliente: ")
     while True:
