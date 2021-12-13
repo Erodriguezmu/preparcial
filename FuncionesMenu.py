@@ -32,8 +32,9 @@ def MenuLista(): # solo la opcion lista usa esta tabla ya que no se requiere mod
     print("Seleccione la operacion que desea realizar")
     print("1.) Añadir")
     print("2.) Eliminar")
-    print("3.) consultar")
-    print("4.) Salir")
+    print("3.) Consultar")
+    print("4.) Reproducir Cancion")
+    print("5.) Salir")
     while True:
         try:
             opcion = int(input("Digite la opción: "))
