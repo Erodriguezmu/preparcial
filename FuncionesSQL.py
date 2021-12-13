@@ -2,6 +2,7 @@
 import sqlite3
 import FuncionesMenu as FMenus
 import os
+from pygame import mixer
 
 def AñadirCanciones(lector,database):#Funcion para añadir canciones a la tabla canciones
     while True:
@@ -537,6 +538,30 @@ def ConsultarLista(lector,database):# se cumplen dos opciones de consulta
                 k = k + 1
     wait = input()
     os.system('cls')
+
+def ReproducirCancion(lector,database):
+    mixer.init()
+    d = []
+    c = input("Digite la id del cliente : ")
+    lector.execute("SELECT IDCLIENTE,IDCANCION,NOMBRE,INTERPRETE FROM LISTA JOIN CANCIONES ON LISTA.IDCANCION=CANCIONES.CODIGO WHERE IDCLIENTE = ?",(c,))
+    d = lector.fetchall()#se requirio usar join para consultar ambas tablas y poder extraer tambien el nombre de la cancion y el interprete
+    FMenus.ImprimirTabla("LISTA")
+    b = 4
+    k = 0
+    for i in range(len(d)): #esta operacion sirve para poner | entre los valores mostrados y separarlos para que sea visualmente mas entendible
+        for j in d[i]:
+            if (k == b):
+                k = 0
+                print("")
+            print("|",end=" ")
+            print(j,end=" ")
+            print("|",end=" ")
+            k = k + 1
+    rep=input("Digite el nombre de la cancion que desea escuchar: ")
+    mixer.music.load(r'%s.mp3'%(rep))
+    mixer.music.play()
+    
+    
     
 def Mostrar(lector,tabla): # esta funcion recibe una tabla y la muestra en el orden que seleccione
     print("")
