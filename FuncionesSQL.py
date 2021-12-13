@@ -2,6 +2,7 @@
 import sqlite3
 import FuncionesMenu as FMenus
 import os
+import smtplib
 from pygame import mixer
 
 def AñadirCanciones(lector,database):#Funcion para añadir canciones a la tabla canciones
@@ -473,6 +474,7 @@ def AñadirLista(lector,database):#añade canciones a la tabla canciones cliente
                             nueva_CanCliente = (a,b)
                             lector.execute("INSERT INTO LISTA(IDCLIENTE, IDCANCION) VALUES(?,?)",nueva_CanCliente)
                             database.commit()
+                            EnvioCorreo(lector,database,a)
                             break
                         except:
                             print("ha ocurrido un error, intentelo de nuevo.")
@@ -491,6 +493,7 @@ def BorrarCancionesLista(lector,database): #borra canciones de la lista luego de
         except:
             print("Codigo no existente1.")
     database.commit()
+    EnvioCorreo(lector,database,a)
     os.system('cls')
 
 def ConsultarLista(lector,database):# se cumplen dos opciones de consulta
@@ -561,7 +564,37 @@ def ReproducirCancion(lector,database):
     mixer.music.load(r'%s.mp3'%(rep))
     mixer.music.play()
     
+def EnvioCorreo(lector,database,cliente):
+    esp=" "
+    separador="|"
+    Flinea="\n"
+    message=''
+    lector.execute("SELECT IDCLIENTE,IDCANCION,NOMBRE,INTERPRETE FROM LISTA JOIN CANCIONES ON LISTA.IDCANCION=CANCIONES.CODIGO WHERE IDCLIENTE = ?",(cliente,))
+    d = lector.fetchall()
+    b = 4
+    k = 0
+    for i in range(len(d)): #esta operacion sirve para poner | entre los valores mostrados y separarlos para que sea visualmente mas entendible
+        for j in d[i]:
+            if (k == b):
+                k = 0
+                message = message+Flinea
+            message=message+separador+esp
+            message=message+j+esp
+            message=message+separador+esp
+            k=k+1
     
+    subject = 'Tu Lista de Canciones'
+    message = 'Subject: {}\n\n{}'.format(subject,message)
+
+    server = smtplib.SMTP('smtp.gmail.com',587)
+    server.starttls()
+    server.login('sqlitebasedatos@gmail.com', 'parcial2021')
+
+    server.sendmail('sqlitebasedatos@gmail.com','paulavalentinabarrero@gmail.com', message)
+
+    server.quit()
+
+    print("Correo enviado con éxito")
     
 def Mostrar(lector,tabla): # esta funcion recibe una tabla y la muestra en el orden que seleccione
     print("")
