@@ -13,20 +13,6 @@ def Menu(): #este es el menu principal donde se elige la tabla que va a ser usad
             print("Numero no valido, escoga denuevo.")
     return opcion
 
-def MenuOpcionesCanciones(): #las 3 primeras tablas usan esta opcion por lo que es llamada luego del menu.
-    print("Seleccione la operacion que desea realizar")
-    print("1.) Añadir")
-    print("2.) Modificar")
-    print("3.) Consultar")
-    print("4.) Salir")
-    while True:
-        try:
-            opcion = int(input("Digite la opción: "))
-            break
-        except:
-            print("Numero no valido, escoga denuevo.")
-    return opcion
-
 def MenuOpciones(): #las 3 primeras tablas usan esta opcion por lo que es llamada luego del menu.
     print("Seleccione la operacion que desea realizar")
     print("1.) Añadir")
@@ -74,8 +60,7 @@ def MenuClientes(): #este menu es llamado cuando se requiere que se vean los atr
     print("6.) Fecha")
     print("7.) NTARJETA")
     print("8.) ESTADO")
-    print("9.) PLAN")
-    print("10.) Salir")
+    print("9.) Salir")
 
 def MenuPlanes(): #este menu es llamado cuando se requiere que se vean los atributos de PLANES para elegir alguno de ellos
     print("1.) Nombre")
