@@ -37,72 +37,72 @@ except:
 condition = True
 os.system('cls')
 while condition ==  True:
-
+#
     opcion =FMenus.Menu() #llama a la primera funcion de menu que usaremos 
 
     if (opcion == 1):
-        objCancion = funciones.Cancion(database)
-        opcion1 = FMenus.MenuOpcionesCanciones() #el menu opciones tiene las mismas 4 opciones para cada una de las tablas (añadir,borrar,modificar,consultar)
+
+        opcion1 = FMenus.MenuOpciones() #el menu opciones tiene las mismas 4 opciones para cada una de las tablas (añadir,borrar,modificar,consultar)
 
         if (opcion1 == 1):
-                objCancion.AñadirCanciones()
+                funciones.AñadirCanciones(lector,database)
         elif (opcion1 == 2):
-                objCancion.ModificarCanciones()
+                funciones.BorrarCanciones(lector,database)
         elif (opcion1 == 3):
-                objCancion.ConsultarCanciones()
+                funciones.ModificarCanciones(lector,database)
         elif (opcion1 == 4):
+                funciones.ConsultarCanciones(lector,database)
+        elif (opcion1 == 5):
                 pass
         else:
                 print("Opcion no valida.1")
 
     if (opcion == 2):
-        objCliente = funciones.Cliente(database)
+
         opcion1 = FMenus.MenuOpciones()
 
         if (opcion1 == 1):
-                objCliente.AñadirClientes()
+                funciones.AñadirClientes(lector,database)
         elif (opcion1 == 2):
-                objCliente.BorrarClientes()
+                funciones.BorrarClientes(lector,database)
         elif (opcion1 == 3):
-                objCliente.ModificarClientes()
+                funciones.ModificarClientes(lector,database)
         elif (opcion1 == 4):
-                objCliente.ConsultarClientes()
+                funciones.ConsultarClientes(lector,database)
         elif (opcion1 == 5):
                 pass
         else:
                 print("Opcion no valida.2")
 
     if (opcion == 3):
-        objPlan = funciones.Plan(database)
+
         opcion1 = FMenus.MenuOpciones()
 
         if (opcion1 == 1):
-                objPlan.AñadirPlanes()
+                funciones.AñadirPlanes(lector,database)
         elif (opcion1 == 2):
-                objPlan.BorrarPlanes()
+                funciones.BorrarPlanes(lector,database)
         elif (opcion1 == 3):
-                objPlan.ModificarPlanes()
+                funciones.ModificarPlanes(lector,database)
         elif (opcion1 == 4):
-                objPlan.ConsultarPlanes()
+                funciones.ConsultarPlanes(lector,database)
         elif (opcion1 == 5):
                 pass
         else:
                 print("Opcion no valida.3")
 
     if (opcion == 4):
-        objLista = funciones.Lista(database)
+
         opcion1 = FMenus.MenuLista() #la lista tiene un menu diferente sin la opcion modificar puesto que solo admite añadir,borrar y consultar.
 
         if (opcion1 == 1):
-                objLista.AñadirLista()
+                funciones.AñadirLista(lector,database)
         elif (opcion1 == 2):
-                objLista.BorrarCancionesLista()
+                funciones.BorrarCancionesLista(lector,database)
         elif (opcion1 == 3):
-                objLista.ConsultarLista()
-        elif (opcion1 == 4):
-                objLista.ReproducirCancion()
+                funciones.ConsultarLista(lector,database)
 
-        elif (opcion1 == 5):
+        elif (opcion1 == 4):
                 pass
         else:
                 print("Opcion no valida.4")
